@@ -34,43 +34,49 @@ function fnStatic() {
 const router = new VueRouter({
   mode: 'hash',
   base: fnStatic(),
-  routes:baseRoutes
+  routes: baseRoutes
 })
 
-router.beforeEach(async (to, from, next) => { 
+router.beforeEach(async (to, from, next) => {
 
-    //刚进去
-    let flag = from.query.channelCode || to.query.channelCode
-    if (flag) {
-      if (!to.query.channelCode) {
-        next({
-          path: to.path,
-          query: from.query
-        })
-      }
-  }
-  
-  if (cookieFn.getCookie(process.env.VUE_APP_TOKEN)) { //如果浏览器有token
-    if (!store.getters.userInfo.userName) { //如果vuex没有用户信息
-      await userApi.getAppSession().then(res => { //通过接口获取用户信息
-        store.state.user.userInfo = res.data//保存用户信息//store.dispatch("user/setUserInfo", res.data); 
-        
+  //刚进去
+  let flag = from.query.channelCode || to.query.channelCode
+  if (flag) {
+    if (!to.query.channelCode) {
+      next({
+        path: to.path,
+        query: from.query
       })
     }
-
-    next()
-
-  }else { //如果没有token
-    if (whiteListName.indexOf(to.name) !== -1) { //白名单
-      next() //放行
-    } else { //非白名单，跳转登录页
-      // store.commit("user/shouAlertLoginFn", true)
-      // next()
-
-      next(`/login`)
-    }
   }
+
+  if (store.state.config.needLogin) {
+    if (cookieFn.getCookie(process.env.VUE_APP_TOKEN)) { //如果浏览器有token
+      if (!store.getters.userInfo.userName) { //如果vuex没有用户信息
+        await userApi.getAppSession().then(res => { //通过接口获取用户信息
+          store.state.user.userInfo = res.data //保存用户信息//store.dispatch("user/setUserInfo", res.data); 
+  
+        })
+      }
+  
+      next()
+  
+    } else { //如果没有token
+      if (whiteListName.indexOf(to.name) !== -1) { //白名单
+        next() //放行
+      } else { //非白名单，跳转登录页
+        // store.commit("user/shouAlertLoginFn", true)
+        // next()
+  
+        next(`/login`)
+      }
+    }
+  } else { 
+    next() //放行
+  }
+
  
+
 })
 
 router.afterEach(() => {

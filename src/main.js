@@ -8,8 +8,8 @@ import '@/styles/index.scss'; //全局样式
 
 
 /** 自定义组件 *******************************************************************************************************/
-import mSteps from '@/components/mSteps/m-steps'
-import mStep from '@/components/mSteps/m-step'
+import mSteps from '@/components/mkd/mSteps/m-steps'
+import mStep from '@/components/mkd/mSteps/m-step'
 Vue.use(mStep)
 Vue.use(mSteps)
 
