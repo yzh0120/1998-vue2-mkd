@@ -1,6 +1,7 @@
 <template>
   <div>
-首页
+<el-button type="primary" size="default" @click="go">录单</el-button>
+
 <p style="height: 1000px;"></p>
 <p></p>
   </div>
@@ -8,7 +9,9 @@
 
 <script>
   export default {
+  methods: {
     
+  },
   }
 </script>
 
