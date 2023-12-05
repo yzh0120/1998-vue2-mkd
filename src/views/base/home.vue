@@ -10,7 +10,9 @@
 <script>
   export default {
   methods: {
-    
+      go() { 
+        
+      },
   },
   }
 </script>

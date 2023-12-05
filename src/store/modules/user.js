@@ -2,6 +2,7 @@ export default {
   namespaced: true,
   state: {
     userInfo: {},
+    shouAlertLogin:false,
   },
   mutations: {
     m_set_userInfo(state, data) {

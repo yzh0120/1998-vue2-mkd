@@ -38,6 +38,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+  // console.log(to.path, from.path, "-------------------------")
 
   //刚进去
   let flag = from.query.channelCode || to.query.channelCode
@@ -55,28 +56,22 @@ router.beforeEach(async (to, from, next) => {
       if (!store.getters.userInfo.userName) { //如果vuex没有用户信息
         await userApi.getAppSession().then(res => { //通过接口获取用户信息
           store.state.user.userInfo = res.data //保存用户信息//store.dispatch("user/setUserInfo", res.data); 
-  
+
         })
       }
-  
       next()
-  
     } else { //如果没有token
       if (whiteListName.indexOf(to.name) !== -1) { //白名单
         next() //放行
       } else { //非白名单，跳转登录页
-        // store.commit("user/shouAlertLoginFn", true)
-        // next()
-  
-        next(`/login`)
+        store.state.user.shouAlertLogin = true
+        next()
+
       }
     }
-  } else { 
+  } else {
     next() //放行
   }
-
- 
-
 })
 
 router.afterEach(() => {

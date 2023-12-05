@@ -14,31 +14,33 @@ let layout = () => import("@/layout/index.vue")
 // import tagsView from "./modules/13-tagsView.js"
 // import panel from "./modules/14-panel.js"
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     redirect: "/home",
     component: layout,
     meta: {},
     children: [{
-      path: 'home',
-      name: 'home',
-      component: () => import("@/views/base/home.vue"),
-      meta: {
-        title: '首页',
-        icon: 'dashboard',
+        path: 'home',
+        name: 'home',
+        component: () => import("@/views/base/home.vue"),
+        meta: {
+        }
+      },
+      {
+        path: 'edit',
+        name: 'edit',
+        component: () => import("@/views/edit/index.vue"),
+        meta: {
+        }
+      },
+      {
+        path: 'myGuarantee',
+        name: 'myGuarantee',
+        component: () => import("@/views/myGuarantee.vue"),
+        meta: {
+        }
       }
-    },
-    {
-      path: 'edit',
-      name: 'edit',
-      component: () => import("@/views/edit/index.vue"),
-      meta: {
-        title: 'edit',
-        icon: 'dashboard',
-
-      }
-    }]
+    ]
   },
   // {
   //   path: '/blank',

@@ -1,31 +1,37 @@
 <template>
   <div id="app">
     <router-view />
+
+    <vxe-modal v-model="$store.state.user.shouAlertLogin" title="登录" width="900" height="500" :showClose="false"
+      :showHeader="false">
+      <alertlogin @myClose="()=>{ $store.state.user.shouAlertLogin = false }"></alertlogin>
+    </vxe-modal>
   </div>
 </template>
 
 <script>
-
+import alertlogin from "@/views/base/alertlogin.vue"
 export default {
   name: 'App',
   components: {
+    alertlogin,
   },
   watch: {
-            "$store.state.user.userInfo.id": {
-          handler(newVal, oldVal) {
-            if (newVal && newVal.length > 0) {
-              //存在
-              // console.log("1111111111111")
-              this.$socket.io.opts.query = {
-                token: 123, //localStorage.getItem("token") || '没有token'
-              };
-              this.$socket.open();
-            } else {
-              this.$socket.disconnect(); //中断socket连接
-            }
-          },
-          immediate: true,
-        },
+    "$store.state.user.userInfo.id": {
+      handler(newVal, oldVal) {
+        if (newVal && newVal.length > 0) {
+          //存在
+          // console.log("1111111111111")
+          this.$socket.io.opts.query = {
+            token: 123, //localStorage.getItem("token") || '没有token'
+          };
+          this.$socket.open();
+        } else {
+          this.$socket.disconnect(); //中断socket连接
+        }
+      },
+      immediate: true,
+    },
   },
   sockets: {
     //内置事件
@@ -62,5 +68,4 @@ export default {
 </script>
 
 <style>
-
 </style>
