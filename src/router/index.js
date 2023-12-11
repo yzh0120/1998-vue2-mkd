@@ -39,7 +39,7 @@ const router = new VueRouter({
 
 router.beforeEach(async (to, from, next) => {
 
-  //
+  //保存某些数据
   if (!store.state.config.platformObj ?.id) {
     let strObj = cookieFn.getLocal("ppp") != `undefined` ? cookieFn.getLocal("ppp") : "{}"
     store.state.config.platformObj = JSON.parse(strObj)
