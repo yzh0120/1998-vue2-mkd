@@ -6,6 +6,7 @@ function clientHeight() {
 export default {
   namespaced: true,
   state: {
+    //弹窗全局的loading字段控制
     al:false,
     isCollapse: false,
     alert401: false,

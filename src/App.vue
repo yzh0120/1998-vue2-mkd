@@ -16,6 +16,18 @@ export default {
   components: {
     alertlogin,
   },
+  mounted() { 
+    this.$store.commit("setup/windowResize");
+    window.addEventListener("resize", this.clientXY);
+  },
+  methods: {
+    clientXY() {
+      this.$store.commit("resize/windowResize");
+    },
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.clientXY);
+  },
   watch: {
     "$store.state.user.userInfo.id": {
       handler(newVal, oldVal) {

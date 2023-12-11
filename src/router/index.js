@@ -38,9 +38,14 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  // console.log(to.path, from.path, "-------------------------")
 
-  //刚进去
+  //
+  if (!store.state.config.platformObj ?.id) {
+    let strObj = cookieFn.getLocal("ppp") != `undefined` ? cookieFn.getLocal("ppp") : "{}"
+    store.state.config.platformObj = JSON.parse(strObj)
+  }
+
+  //刚进去保存query
   let flag = from.query.channelCode || to.query.channelCode
   if (flag) {
     if (!to.query.channelCode) {
