@@ -68,57 +68,146 @@ export function download(params = {}, downloadUrl, method = "get") {
     finallyUrl = "/system/file_annexes/download"
   }
 
-  axios({
-    method: method,
-    url: finallyUrl,
-    baseURL: process.env.VUE_APP_API,
-    params: params,
-    data: params,
-    responseType: 'blob',
-    headers: headers
-  }).then(response => {
-    msg.close(); //关闭提示弹窗
-    //兼容blob下载出错json提示//////////////////////////////////
-    if (response.request.responseType === 'blob' && response.data instanceof Blob && response.data.type && response.data.type.toLowerCase().indexOf('json') != -1) {
-      reject("blob下载出错json提示")
-      // 兼容blob下载出错json提示
-      let reader = new FileReader()
-      reader.onload = () => {
-        response.data = JSON.parse(reader.result);
-        Message({
-          message: response.data.info,
-          type: 'warning',
-          duration: 2000
-        })
+  return new Promise((resolve, reject) => {
+    axios({
+      method: method,
+      url: finallyUrl,
+      baseURL: process.env.VUE_APP_API,
+      params: params,
+      data: params,
+      responseType: 'blob',
+      headers: headers
+    }).then(response => {
+      msg.close(); //关闭提示弹窗
+      //兼容blob下载出错json提示//////////////////////////////////
+      if (response.request.responseType === 'blob' && response.data instanceof Blob && response.data.type && response.data.type.toLowerCase().indexOf('json') != -1) {
+        reject("blob下载出错json提示")
+        // 兼容blob下载出错json提示
+        let reader = new FileReader()
+        reader.onload = () => {
+          response.data = JSON.parse(reader.result);
+          Message({
+            message: response.data.info,
+            type: 'warning',
+            duration: 2000
+          })
+        }
+        reader.readAsText(response.data)
+        return;
       }
-      reader.readAsText(response.data)
-      return;
-    }
-    ////////////////////////////////////
-    let blob = new Blob([response.data]);
-    let objectUrl = URL.createObjectURL(blob);
-    let link = document.createElement("a");
-    link.style.display = "none";
-    link.href = objectUrl;
-    ////////////////////////////////////
-    if (response.headers.filename) {
-      link.setAttribute("download", decodeURIComponent(response.headers.filename));
-    } else {
-      link.setAttribute("download", decodeURIComponent(response.headers["content-disposition"].split("filename=")[1]));
-    }
-    // link.setAttribute("download", decodeURIComponent(response.headers["content-disposition"].split("filename=")[1]));
-    document.body.appendChild(link);
-    link.click();
-  }).catch(err => {
-    Message({
-      message: err,
-      type: 'warning',
-      duration: 2000
+      ////////////////////////////////////
+      let blob = new Blob([response.data]);
+      let objectUrl = URL.createObjectURL(blob);
+      let link = document.createElement("a");
+      link.style.display = "none";
+      link.href = objectUrl;
+      ////////////////////////////////////
+      if (response.headers.filename) {
+        link.setAttribute("download", decodeURIComponent(response.headers.filename));
+      } else {
+        link.setAttribute("download", decodeURIComponent(response.headers["content-disposition"].split("filename=")[1]));
+      }
+      // link.setAttribute("download", decodeURIComponent(response.headers["content-disposition"].split("filename=")[1]));
+      document.body.appendChild(link);
+      link.click();
+
+      resolve("成功")
+    }).catch(err => {
+      // Message({
+      //   message: err,
+      //   type: 'warning',
+      //   duration: 2000
+      // })
+      console.log(err, "err")
+      msg.close();
+      reject(err)
     })
-    msg.close();
-    // reject(err)
   })
+
+
 }
+// export function download(params = {}, downloadUrl, method = "get") {
+//   if (downloadUrl == "pre") {
+//     if (/.xls|.xlsx|.doc|.docx|.ppt|.pptx/g.test(params.fileUrl)) {
+//       var ele = `
+//                    <iframe src='https://view.officeapps.live.com/op/view.aspx?src=${params.fileUrl}' width='100%' height='100%' frameborder='1'>
+//                    </iframe>
+//                `;
+//       var newwindow = window.open(params.fileUrl, "_blank", '');
+//       newwindow.document.write(ele);
+//     } else {
+//       window.open(params.fileUrl)
+//     }
+
+//     return;
+//   }
+//   let msg = Message({
+//     message: "正在下载文件，请稍等",
+//     type: 'warning',
+//     duration: 0
+//   })
+//   let headers = {
+//     // 'Authorization': "Bearer " + getToken(),
+//     'Authorization': "Bearer " + cookieFn.getCookie(process.env.VUE_APP_TOKEN),
+//   }
+//   let finallyUrl
+//   if (downloadUrl) {
+//     finallyUrl = type
+//   } else {
+//     finallyUrl = "/system/file_annexes/download"
+//   }
+
+//   axios({
+//     method: method,
+//     url: finallyUrl,
+//     baseURL: process.env.VUE_APP_API,
+//     params: params,
+//     data: params,
+//     responseType: 'blob',
+//     headers: headers
+//   }).then(response => {
+//     msg.close(); //关闭提示弹窗
+//     //兼容blob下载出错json提示//////////////////////////////////
+//     if (response.request.responseType === 'blob' && response.data instanceof Blob && response.data.type && response.data.type.toLowerCase().indexOf('json') != -1) {
+//       reject("blob下载出错json提示")
+//       // 兼容blob下载出错json提示
+//       let reader = new FileReader()
+//       reader.onload = () => {
+//         response.data = JSON.parse(reader.result);
+//         Message({
+//           message: response.data.info,
+//           type: 'warning',
+//           duration: 2000
+//         })
+//       }
+//       reader.readAsText(response.data)
+//       return;
+//     }
+//     ////////////////////////////////////
+//     let blob = new Blob([response.data]);
+//     let objectUrl = URL.createObjectURL(blob);
+//     let link = document.createElement("a");
+//     link.style.display = "none";
+//     link.href = objectUrl;
+//     ////////////////////////////////////
+//     if (response.headers.filename) {
+//       link.setAttribute("download", decodeURIComponent(response.headers.filename));
+//     } else {
+//       link.setAttribute("download", decodeURIComponent(response.headers["content-disposition"].split("filename=")[1]));
+//     }
+//     // link.setAttribute("download", decodeURIComponent(response.headers["content-disposition"].split("filename=")[1]));
+//     document.body.appendChild(link);
+//     link.click();
+//   }).catch(err => {
+//     Message({
+//       message: err,
+//       type: 'warning',
+//       duration: 2000
+//     })
+//     msg.close();
+//     // reject(err)
+//   })
+// }
 
 //url下载文件流
 export async function download_url(urll) {
