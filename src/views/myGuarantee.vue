@@ -7,7 +7,7 @@
 <script>
   export default {
   mounted() { 
-    alert(1)
+    // alert(1)
   },
   }
 </script>

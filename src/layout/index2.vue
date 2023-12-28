@@ -3,35 +3,17 @@
   <el-container class="container">
     <template v-if="$store.state.config.needLogin">
       <el-header class="headerstyle">
-        <!-- 左边 -->
-        <div class="left">
+        <div style="display: flex;align-items: left;width:50px">
           <img :src="require(`@/assets/logo.png`)" alt style="cursor: pointer;width:100%" @click="toHome" />
         </div>
 
-      
-          <!-- 中间 -->
-          <el-menu :default-active="$route.path" router class="el-menu-demo" mode="horizontal">
-            <el-menu-item index="/home">首页</el-menu-item>
-            <el-menu-item index="/jyt">捷易通平台</el-menu-item>
+        <el-menu :default-active="$route.path" router mode="horizontal" text-color="#000000" active-text-color="#F6384C">
+          <el-menu-item index="/home">首页</el-menu-item>
+          <el-menu-item index="/myGuarantee">我的订单</el-menu-item>
+          <el-menu-item index="/checkGuarantee">保函查验</el-menu-item>
+          <el-menu-item index="/info">用户信息</el-menu-item>
 
-
-            <el-submenu index="/abc">
-              <template slot="title">系统软件</template>
-
-              <el-menu-item index="/myGuar123antee">三方金融服务平台</el-menu-item>
-              <el-menu-item index="/dzbhspxt">电子保函审批系统</el-menu-item>
-              <el-menu-item index="/frzywoaxt">非融资业务OA系统</el-menu-item>
-            </el-submenu>
-
-            <!-- <el-menu-item index="/jdal">经典案例</el-menu-item>
-          <el-menu-item index="/hyzx">行业资讯</el-menu-item>
-          <el-menu-item index="/rczp">人才招聘</el-menu-item>
-          <el-menu-item index="/aboutUs">关于我们</el-menu-item> -->
-          </el-menu>
-       
-
-
-        <!-- 右边 -->
+        </el-menu>
         <div class="right">
           <el-button v-if="!userInfo.id" type="info" size="small" @click="tologin" class="loginBtn">登录</el-button>
           <el-dropdown v-else :show-timeout="70" :hide-timeout="50" @command="onDropdownCommand">
@@ -57,11 +39,10 @@
       </el-main>
     </template>
     <template v-else>
-      <!-- 主体 -->
       <div style="width: 1000px; margin: 0 auto;">
         <el-scrollbar style="height: 100%; ">
-          <router-view></router-view>
-        </el-scrollbar>
+        <router-view></router-view>
+      </el-scrollbar>
       </div>
     </template>
 
@@ -115,13 +96,7 @@ export default {
     background-color: #ffffff;
     height: 90px !important;
 
-    .left {
-      display: flex;
-      align-items: left;
-      width: 50px
-    }
 
-    //右边
     .right {
       .loginBtn {
         background: #F5F5F5;
@@ -139,7 +114,6 @@ export default {
     }
   }
 
-  //主体
   .layout-main {
     width: 1000px;
     margin: 0 auto;
@@ -152,18 +126,14 @@ export default {
     overflow: auto
   }
 
-  // .el-menu--horizontal {
-  //   .el-submenu {
-  //     .el-submenu__title {
-  //       border: 0px solid red !important;
-  //       font-size: 16px !important;
-  //       ;
-  //       font-weight: 500 !important;
-  //       ;
-  //       color: rgba(31, 31, 31, 1) !important;
-  //     }
-  //   }
-  // }
+  .el-menu--horizontal {
+    border: 0px;
+
+    .el-menu-item {
+      font-size: 16px;
+      border: 0px;
+    }
+  }
 
   .el-dropdown-menu__item {
     &:hover {
@@ -173,7 +143,4 @@ export default {
 
   }
 }
-
-
-// @import '~@/styles/ppp.scss';
 </style>
