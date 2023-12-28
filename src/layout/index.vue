@@ -2,14 +2,16 @@
 <template>
   <el-container class="container">
     <template v-if="$store.state.config.needLogin">
-      <el-header class="headerstyle">
+      <el-header class="box">
         <!-- 左边 -->
         <div class="left">
-          <img :src="require(`@/assets/logo.png`)" alt style="cursor: pointer;width:100%" @click="toHome" />
+          <img :src="require(`@/assets/logo.png`)" alt  @click="toHome" />
         </div>
 
-      
-          <!-- 中间 -->
+
+        <!-- 中间 -->
+
+        <div class="nav">
           <el-menu :default-active="$route.path" router class="el-menu-demo" mode="horizontal">
             <el-menu-item index="/home">首页</el-menu-item>
             <el-menu-item index="/jyt">捷易通平台</el-menu-item>
@@ -28,7 +30,9 @@
           <el-menu-item index="/rczp">人才招聘</el-menu-item>
           <el-menu-item index="/aboutUs">关于我们</el-menu-item> -->
           </el-menu>
-       
+        </div>
+
+
 
 
         <!-- 右边 -->
@@ -106,23 +110,36 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  .headerstyle {
-    width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
+  .box {
+    position: relative;
     height: 90px !important;
 
     .left {
+      height: 100%;
+      position: absolute;
+      left: 0;
       display: flex;
-      align-items: left;
-      width: 50px
+      justify-content: center;
+      align-items: center;
+      padding-left: 60px;
+      
+      img{
+        cursor: pointer;
+        width:50px;
+      }
     }
 
     //右边
     .right {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 60px;
+
       .loginBtn {
         background: #F5F5F5;
         border-color: #F5F5F5;
@@ -136,6 +153,11 @@ export default {
           color: #ffffff;
         }
       }
+    }
+
+    .nav {
+      width: 1000px;
+      margin: 0 auto;
     }
   }
 
