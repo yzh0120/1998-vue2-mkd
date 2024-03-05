@@ -12,11 +12,20 @@
 
 			</div>
 			<!-- 身体 -->
-			<div class="panel-body" :style="{ height: height }">
+			<!-- <div class="panel-body" :style="{ height: height }">
 				<div ref="innerBodyBody" style="padding: 15px;">
 					<slot></slot>
 				</div>
-			</div>
+			</div> -->
+			
+      <div v-if="isOne">
+        <div class="panel-body" v-if="showBody" :style="{ padding: `15px` }">
+          <slot></slot>
+        </div>
+      </div>
+      <div v-else class="panel-body" v-show="showBody" :style="{ padding: `15px` }" >
+        <slot></slot>
+      </div>
 		</div>
 	</div>
 </template>
@@ -29,7 +38,6 @@
 	danger
 	 -->
 <script>
-import elementResizeDetectorMaker from 'element-resize-detector'
 export default {
 	props: {
 		head: String,
@@ -47,6 +55,13 @@ export default {
 		}
 	},
 	computed: {
+		isOne() {
+      if (this.count < 1) {
+        return true
+      } else {
+        return false
+      }
+    },
 		addType() {
 			return "panel-" + this.type
 		},
@@ -63,67 +78,48 @@ export default {
 	},
 	data() {
 		return {
-			showBody: true,
+			showBody: false,
 			height: "0px",
-			count: 0,
+			count: 0,//展开次数
 		};
 	},
 	watch: {
 		"close": {
-
 			handler() {
-				// alert(1)
-				// if (this.close) {
-				// 	this.showBody = false
-				// } else {
-				// 	this.height = this.$refs.innerBodyBody.offsetHeight + 'px'
-				// 	this.count++
-				// }
-
-				this.showBody = this.close
-
-				this.bodyHandle()
-			},
+        setTimeout(() => {
+          this.showBody = !this.close
+          if (this.showBody) {
+            this.count++
+          }
+        }, 0)
+      },
 		},
 	},
 	mounted() {
-		if (this.close) {
-			this.showBody = false
-		} else {
-			this.height = this.$refs.innerBodyBody.offsetHeight + 'px'
-			this.count++
-		}
-
-		const _this = this;
-		const erd = elementResizeDetectorMaker()
-		//监听
-		erd.listenTo(_this.$refs.innerBodyBody, (element) => {
-			_this.$nextTick(() => {
-				if (this.count === 0) {
-
-				} else {
-					if (this.showBody) {
-						_this.height = element.offsetHeight + 'px'
-					} else {
-
-					}
-
-				}
-				this.count++
-			})
-		})
-	},
+    if (this.close) {
+      setTimeout(() => {
+        this.showBody = false
+      }, 0)
+    } else {
+      setTimeout(() => {
+        this.showBody = true
+        this.count++
+      }, 0)
+    }
+  },
 	methods: {
 		bodyHandle() {
-			// 
-			if (this.showBody) {
-				this.height = "0px"
-			} else {
-				this.height = this.$refs.innerBodyBody.offsetHeight + 'px'
-			}
-			this.showBody = !this.showBody;
-			console.log(this.showBody)
-		},
+      if (!this.listenTo) {
+        setTimeout(() => {
+          this.showBody = !this.showBody;
+          if (this.showBody) {
+            this.count++
+          }
+          console.log(this.showBody)
+        }, 0)
+
+      }
+    }
 
 	}
 };
