@@ -2,8 +2,8 @@
   <div id="app">
     <router-view />
 
-    <vxe-modal v-model="$store.state.user.shouAlertLogin" title="登录" width="900" height="500" :showClose="false"
-      :showHeader="false">
+    <vxe-modal v-model="$store.state.user.shouAlertLogin" title="" width="1000" height="600" 
+      >
       <alertlogin @myClose="()=>{ $store.state.user.shouAlertLogin = false }"></alertlogin>
     </vxe-modal>
   </div>

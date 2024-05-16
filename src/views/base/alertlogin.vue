@@ -9,56 +9,57 @@
 
 
     <div class="login">
+      <!-- 左边 -->
       <div class="left">
         <img :src="require(`@/assets/login1.png`)" alt="" width="309px" style="">
         <div class="leftfont">
           招采项目全生命周期 一站式金融解决方案
         </div>
       </div>
-
+      <!-- 右边 -->
       <div class="right" style="position: relative;">
-        <i class="el-icon-close" style="position: absolute;right:10px;top:10px;font-size: 24px;cursor: pointer;"
-          @click="$emit(`myClose`)"></i>
-        <el-card shadow="never" :body-style="{ padding: '20px' }" style="height:100%;border:0px;">
+        <!-- X号 -->
+        <!-- <i class="el-icon-close" style="position: absolute;right:10px;top:10px;font-size: 24px;cursor: pointer;"
+          @click="$emit(`myClose`)"></i> -->
+        <!-- <el-card shadow="never" :body-style="{ padding: '20px' }" style="height:100%;border:0px;"> -->
+        <div class="content">
+          <div style="width: 360px; height: 333px;">
+            <!-- 标题 -->
+            <div class="title">快速登录</div>
+            <!-- 表单 -->
+            <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="off"
+              size="large" @submit.native.prevent>
+              <el-form-item prop="phoneNumber">
+                <el-input ref="phoneNumber" v-model.trim="loginForm.phoneNumber" placeholder="请输入手机号码"
+                  class="phoneNumber">
+                </el-input>
+              </el-form-item>
 
-          <div class="title">快速登录</div>
-          <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="off"
-            size="large" @submit.native.prevent>
-
-
-            <el-form-item prop="phoneNumber">
-
-              <el-input ref="phoneNumber" v-model.trim="loginForm.phoneNumber" placeholder="请输入手机号码"
-                class="phoneNumber">
-              </el-input>
-            </el-form-item>
-
-            <el-form-item prop="msgCode" style="position: relative;">
-              <el-button
-                style="height:27px;position: absolute; right: 12px;top:50%;transform: translateY(-50%); z-index: 999;background-color: #DCDFE6;border: 0px;color:#000000 ;opacity: 50%;"
-                type="primary" :disabled="btndisabled" @click.prevent.stop="sendCode" size="mini">{{ codeText }}
-              </el-button>
-              <el-input v-model.trim="loginForm.msgCode" placeholder="请输入验证码" class="msgCode">
-              </el-input>
-            </el-form-item>
-
-
-
+              <el-form-item prop="msgCode" style="position: relative;">
+                <el-button
+                  style="height:27px;position: absolute; right: 12px;top:50%;transform: translateY(-50%); z-index: 999;background-color: #DCDFE6;border: 0px;color:#000000 ;opacity: 50%;"
+                  type="primary" :disabled="btndisabled" @click.prevent.stop="sendCode" size="mini">{{ codeText }}
+                </el-button>
+                <el-input v-model.trim="loginForm.msgCode" placeholder="请输入验证码" class="msgCode">
+                </el-input>
+              </el-form-item>
+              <!-- 登录按钮 -->
               <el-button native-type="submit" :loading="loading" type="primary" class="loginbtn" size="large"
-              @click.native.prevent="handleLogin">立即登录</el-button>
+                @click.native.prevent="handleLogin">立即登录</el-button>
+              <!-- 脚部 -->
               <div class="flexbtn">
-             
-
                 <div class="logonbtn">
-                <span class="span1">没有账号？</span>
-                <span class="span2" @click.prevent="signIn">注册账号</span>
+                  <span class="span1">没有账号？</span>
+                  <span class="span2" @click.prevent="signIn">注册账号</span>
+                </div>
               </div>
-            </div>
+              <!-- 脚部 -->
+              <el-divider class="">其他登录方式</el-divider>
 
-            <el-divider class="">其他登录方式</el-divider>
-
-          </el-form>
-        </el-card>
+            </el-form>
+          </div>
+          <!-- </el-card> -->
+        </div>
       </div>
 
     </div>
@@ -90,11 +91,6 @@ export default {
       loginRules: {
         phoneNumber: [
           { required: true, trigger: "blur", message: "请输入手机号码" },
-          // {
-          //   pattern: /^1[3,4,5,6,7,8,9][0-9]\d{8}$/,
-          //   message: "手机号格式不对",
-          //   trigger: ["blur", "change"],
-          // },
         ],
         msgCode: [{ required: true, trigger: "blur", message: "请输入验证码" }],
       },
@@ -130,10 +126,10 @@ export default {
   // },
   destroyed() { },
   methods: {
-    signIn() { 
+    signIn() {
       this.$router.push({
-        path:"/signIn"
-      }).then(() => { 
+        path: "/signIn"
+      }).then(() => {
         this.$store.state.user.shouAlertLogin = false
       })
     },
@@ -175,15 +171,15 @@ export default {
                   res.data.token,
                   new Date(res.data.expireTime)
                 );
-                console.log(this.$route,"this.$route")
+                console.log(this.$route, "this.$route")
                 let path = this.$route.path
                 this.$router.push({
                   path: "/home"
-                }).then(() => { 
+                }).then(() => {
                   this.$emit("myClose")
                   this.$router.push({
-                  path: path
-                })
+                    path: path
+                  })
                 })
               } else {
                 this.$message.error(res.info);
@@ -270,35 +266,7 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-// $light_gray: #ccc;
 
-// .image {
-//   position: absolute;
-//   top: 50px;
-//   left: 100px;
-// }
-
-// .login {
-//   width: 400px;
-//   position: absolute;
-//   left: 50%;
-//   top: 50%;
-//   transform: translate(-50%, -50%);
-// }
-
-// .title {
-//   font-size: 26px;
-//   color: $light_gray;
-//   margin: 0px auto 40px auto;
-//   text-align: center;
-//   font-weight: bold;
-// }
-
-// .register {
-//   color: #409eff;
-//   cursor: pointer;
-//   text-align: right;
-// }
 $light_gray: #ccc;
 
 .login-container {
@@ -329,7 +297,8 @@ $light_gray: #ccc;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    img{
+
+    img {
       width: 100px;
       // height: 100px;
     }
@@ -346,18 +315,30 @@ $light_gray: #ccc;
 
   .right {
     height: 100%;
-    width: 400px;
+    width: 500px;
     padding-right: 40px;
 
-    .title {
-      text-align: center;
-  font-weight: bold;
-      margin-top: 50px;
-      font-size: 26px;
-      font-weight: bold;
-      color: black;
-      margin-bottom: 30px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    position: relative;
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      .title {
+        text-align: center;
+        font-weight: bold;
+        margin-top: 50px;
+        font-size: 26px;
+        font-weight: bold;
+        color: black;
+        margin-bottom: 30px;
+      }
+
     }
+
   }
 }
 
@@ -365,17 +346,11 @@ $light_gray: #ccc;
 
 ::v-deep {
   .el-input.el-input--large input {
-    // border-top: 0px;
-    // border-left: 0px;
-    // border-right: 0px;
     border-radius: 0px;
     padding-left: 15px;
   }
 
   .el-input-group__append {
-    // border-top: 0px;
-    // border-left: 0px;
-    // border-right: 0px;
     border-radius: 0px;
     background-color: transparent;
   }
@@ -399,26 +374,29 @@ $light_gray: #ccc;
 
   .loginbtn {
     width: 100%;
-      height: 48px;
-      // margin-top: 60px;
-      // margin-bottom: 15px;
-      background-color: #F6384C;
-      border: #F6384C;
-      font-size: 18px;
+    height: 48px;
+    // margin-top: 60px;
+    // margin-bottom: 15px;
+    background-color: #F6384C;
+    border: #F6384C;
+    font-size: 18px;
+  }
+
+  .logonbtn {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 14px;
+
+    .span1 {
+      color: rgba(0, 0, 0, 0.4);
+
     }
-  .logonbtn{
-      margin-top: 20px;
-      text-align: right;
-      font-size: 14px;
-      .span1{
-        color: rgba(0,0,0,0.4);
-        
-      }
-      .span2{
-        cursor: pointer;
-        color: #409EFF;
-      }
+
+    .span2 {
+      cursor: pointer;
+      color: #409EFF;
     }
+  }
 
 
   .el-divider__text {
