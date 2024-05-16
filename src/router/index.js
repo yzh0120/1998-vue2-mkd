@@ -16,7 +16,7 @@ VueRouter.prototype.push = function push(location) {
 }
 
 //路由白名单
-const whiteListName = ["login", "404", "401"]
+const whiteListName = ["login", "404", "401","edit","home"]
 
 
 //静态资源目录
