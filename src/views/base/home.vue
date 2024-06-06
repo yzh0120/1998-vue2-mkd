@@ -1,6 +1,6 @@
 <template>
   <div>
-<el-button type="primary" size="default" @click="go">录单</el-button>
+<!-- <el-button type="primary" size="default" @click="go">录单</el-button> -->
 
 
 <tip title="注意事项">
@@ -16,7 +16,7 @@
           </div>
 </tip>
 
-<p style="height: 1000px;"></p>
+<!-- <p style="height: 1000px;"></p> -->
 <p></p>
   </div>
 </template>
