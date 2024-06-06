@@ -60,6 +60,9 @@ Vue.component("pdfShowAll", pdfShowAll)
 
 import pdfPage from '@/components/pdf/pdfPage'
 Vue.component("pdfPage", pdfPage)
+
+import tip from '@/components/mkd/tip'
+Vue.component("tip", tip)
 /** mixin *******************************************************************************************************/
 import baseFormMixin from "@/mixins/baseForm";
 Vue.mixin(baseFormMixin)
