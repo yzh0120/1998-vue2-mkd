@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bbox">
 <!-- <el-button type="primary" size="default" @click="go">录单</el-button> -->
 
 
@@ -16,7 +16,7 @@
           </div>
 </tip>
 
-<!-- <p style="height: 1000px;"></p> -->
+<p style="height: 1000px;"></p>
 <p></p>
   </div>
 </template>

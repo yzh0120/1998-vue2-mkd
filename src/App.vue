@@ -22,11 +22,11 @@ export default {
   },
   methods: {
     clientXY() {
-      this.$store.commit("resize/windowResize");
+      this.$store.commit("setup/windowResize");
     },
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.clientXY);
+    window.removeEventListener("setup", this.clientXY);
   },
   watch: {
     "$store.state.user.userInfo.id": {
@@ -79,5 +79,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.bbox{
+  width: 1000px;
+  margin: 0 auto;
+}
 </style>

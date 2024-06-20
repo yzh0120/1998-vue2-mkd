@@ -42,7 +42,7 @@
       </el-header>
 
       <!-- 主体 -->
-      <el-main class="layout-main">
+      <el-main >
         <!-- <el-scrollbar style="height: 100%; "> -->
           <router-view></router-view>
         <!-- </el-scrollbar> -->
@@ -50,7 +50,7 @@
     </template>
     <template v-else>
       <!-- 主体 -->
-      <div style="width: 1000px; margin: 0 auto;">
+      <div >
         <!-- <el-scrollbar style="height: 100%; "> -->
           <router-view></router-view>
         <!-- </el-scrollbar> -->
