@@ -7,6 +7,7 @@
 -->
 <template>
   <div class="my-steps">
+    <!-- 从0开始的 -->
     <mSteps :active="computed_active" class="mb15" style="margin-top:60px;">
       <mStep title="填写项目信息" :description="fn(0)"></mStep>
       <mStep title="金融机构审核" :description="fn(1)"></mStep>
@@ -31,6 +32,7 @@ export default {
     }
   },
   computed: {
+    //  从0开始的
     computed_active() { 
       return this.active
       // if (this.active == 2) {
@@ -46,9 +48,9 @@ export default {
   methods: {
     // 描述
     fn(noww) {
-      if (noww > Number(this.active)) {
+      if (noww > Number(this.computed_active)) {
         return ""
-      } else if (noww == Number(this.active)) {
+      } else if (noww == Number(this.computed_active)) {
         // if (noww == 4 && this.info.guaranteeStatus == 2) {
         //   return "已完成"
         // }else  if (noww == 4 && this.info.financialAuditStatus == -1) {
@@ -60,7 +62,7 @@ export default {
         // }
         return "进行中"
        
-      } else if (noww < Number(this.active)) {
+      } else if (noww < Number(this.computed_active)) {
         return "已完成"
       }
     }
