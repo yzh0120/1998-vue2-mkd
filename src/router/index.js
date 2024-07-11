@@ -69,7 +69,7 @@ router.beforeEach(async (to, from, next) => {
       if (whiteListName.indexOf(to.name) !== -1) { //白名单
         next() //放行
       } else { //非白名单，跳转登录页
-        store.state.user.shouAlertLogin = true
+        next(`/login`)//store.state.user.shouAlertLogin = true
         next()
 
       }

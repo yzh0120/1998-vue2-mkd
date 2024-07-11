@@ -70,10 +70,10 @@ service.interceptors.response.use(
               confirmButtonText: '确定',
               callback: action => {
                 removeCookie(process.env.VUE_APP_TOKEN);
-                // router.push({
-                //   path: '/login'
-                // });
-                store.state.user.shouAlertLogin = true
+                router.push({
+                  path: '/login'
+                });
+                // store.state.user.shouAlertLogin = true
               }
             })
           }
