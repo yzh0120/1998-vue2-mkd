@@ -70,8 +70,7 @@ router.beforeEach(async (to, from, next) => {
         next() //放行
       } else { //非白名单，跳转登录页
         next(`/login`)//store.state.user.shouAlertLogin = true
-        next()
-
+        // next()
       }
     }
   } else {
