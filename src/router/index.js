@@ -79,7 +79,7 @@ router.beforeEach(async (to, from, next) => {
 })
 
 router.afterEach(() => {
-
+  next() //放行
 })
 
 
