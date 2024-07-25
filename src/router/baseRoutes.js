@@ -34,6 +34,27 @@ const routes = [{
         }
       },
       {
+        path: 'jyt',
+        name: 'jyt',
+        component: () => import("@/views/edit/index.vue"),
+        meta: {
+        }
+      },
+      {
+        path: 'dzbhspxt',
+        name: 'dzbhspxt',
+        component: () => import("@/views/edit/index.vue"),
+        meta: {
+        }
+      },
+      {
+        path: 'frzywoaxt',
+        name: 'frzywoaxt',
+        component: () => import("@/views/edit/index.vue"),
+        meta: {
+        }
+      },
+      {
         path: 'myGuarantee',
         name: 'myGuarantee',
         component: () => import("@/views/myGuarantee.vue"),
