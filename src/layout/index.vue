@@ -1,59 +1,66 @@
-
 <template>
   <el-container class="container">
     <template v-if="$store.state.config.needNav">
-      <el-header class="box">
-        <!-- 左边 -->
-        <div class="left">
-          <img :src="require(`@/assets/logo.png`)" alt  @click="toHome" />
+      <el-header height="auto">
+        <div class="box">
+          <!-- 左边 -->
+          <div class="left">
+            <img :src="require(`@/assets/logo.png`)" alt @click="toHome" />
+          </div>
+          <!-- 中间 -->
+          <div class="nav" v-if="$store.state.setup.window_innerWidth >= 1500">
+            <el-menu :default-active="$route.path" router class="el-menu-demo" mode="horizontal">
+              <el-menu-item index="/home">首页</el-menu-item>
+              <el-menu-item index="/jyt">捷易通平台</el-menu-item>
+              <el-submenu index="/abc">
+                <template slot="title">系统软件</template>
+                <el-menu-item index="/edit">三方金融服务平台</el-menu-item>
+                <el-menu-item index="/dzbhspxt">电子保函审批系统</el-menu-item>
+                <el-menu-item index="/frzywoaxt">非融资业务OA系统</el-menu-item>
+              </el-submenu>
+            </el-menu>
+          </div>
+          <!-- 右边 -->
+          <div class="right">
+            <el-button v-if="!userInfo.id" type="info" size="small" @click="tologin" class="loginBtn">登录</el-button>
+            <el-dropdown v-else :show-timeout="70" :hide-timeout="50" @command="onDropdownCommand">
+              <span>
+                <span v-if="userInfo.userName">{{ userInfo.userName }}</span>
+                <span v-else-if="userInfo.phone">{{ userInfo.phone }}</span>
+                <span v-else>未登录</span>
+                <i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="logOut">退出登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
         </div>
-        <!-- 中间 -->
-        <div class="nav">
-          <el-menu :default-active="$route.path" router class="el-menu-demo" mode="horizontal">
-            <el-menu-item index="/home">首页</el-menu-item>
-            <el-menu-item index="/jyt">捷易通平台</el-menu-item>
-            <el-submenu index="/abc">
-              <template slot="title">系统软件</template>
-              <el-menu-item index="/edit">三方金融服务平台</el-menu-item>
-              <el-menu-item index="/dzbhspxt">电子保函审批系统</el-menu-item>
-              <el-menu-item index="/frzywoaxt">非融资业务OA系统</el-menu-item>
-            </el-submenu>
-            <!-- <el-menu-item index="/jdal">经典案例</el-menu-item>
-          <el-menu-item index="/hyzx">行业资讯</el-menu-item>
-          <el-menu-item index="/rczp">人才招聘</el-menu-item>
-          <el-menu-item index="/aboutUs">关于我们</el-menu-item> -->
-          </el-menu>
-        </div>
-        <!-- 右边 -->
-        <div class="right">
-          <el-button v-if="!userInfo.id" type="info" size="small" @click="tologin" class="loginBtn">登录</el-button>
-          <el-dropdown v-else :show-timeout="70" :hide-timeout="50" @command="onDropdownCommand">
-            <span>
-              <span v-if="userInfo.userName">{{ userInfo.userName }}</span>
-              <span v-else-if="userInfo.phone">{{ userInfo.phone }}</span>
-              <span v-else>未登录</span>
-              <i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="logOut">退出登录</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </div>
-      </el-header>
 
+         <!-- 中间 -->
+         <div class="nav" v-if="$store.state.setup.window_innerWidth < 1500">
+            <el-menu :default-active="$route.path" router class="el-menu-demo" mode="horizontal">
+              <el-menu-item index="/home">首页</el-menu-item>
+              <el-menu-item index="/jyt">捷易通平台</el-menu-item>
+              <el-submenu index="/abc">
+                <template slot="title">系统软件</template>
+                <el-menu-item index="/edit">三方金融服务平台</el-menu-item>
+                <el-menu-item index="/dzbhspxt">电子保函审批系统</el-menu-item>
+                <el-menu-item index="/frzywoaxt">非融资业务OA系统</el-menu-item>
+              </el-submenu>
+            </el-menu>
+          </div>
+
+      </el-header>
       <!-- 主体 -->
-      <el-main >
-        <!-- <el-scrollbar style="height: 100%; "> -->
-          <router-view></router-view>
-        <!-- </el-scrollbar> -->
+      <el-main>
+        <router-view></router-view>
       </el-main>
     </template>
     <template v-else>
       <!-- 主体 -->
       <el-main>
-        <!-- <el-scrollbar style="height: 100%; "> -->
-          <router-view></router-view>
-        <!-- </el-scrollbar> -->
+        <router-view></router-view>
       </el-main>
     </template>
 
@@ -98,6 +105,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
+
   .box {
     position: relative;
     height: 90px !important;
@@ -110,10 +118,10 @@ export default {
       justify-content: center;
       align-items: center;
       padding-left: 60px;
-      
-      img{
+
+      img {
         cursor: pointer;
-        width:50px;
+        width: 50px;
       }
     }
 
@@ -143,18 +151,12 @@ export default {
       }
     }
 
-    .nav {
+    
+  }
+  .nav {
       width: 1000px;
       margin: 0 auto;
     }
-  }
-
-  //主体
-  .layout-main {
-    width: 1000px;
-    margin: 0 auto;
-    // padding: 0 2px;
-  }
 }
 
 ::v-deep {
