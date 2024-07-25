@@ -13,7 +13,8 @@ export default {
     dataItem: [],//数据字典
     tableheight: screenHeight - 280 + "px",//vxetable高度
     navTableHeight: screenHeight - 120 + "px",//vxetable高度,
-    needLogin:true,
+    needLogin: true,
+    needNav:false,
     loading:false,//全局加载控制
     
   },

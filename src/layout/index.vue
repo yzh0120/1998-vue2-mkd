@@ -1,7 +1,7 @@
 
 <template>
   <el-container class="container">
-    <template v-if="$store.state.config.needLogin">
+    <template v-if="$store.state.config.needNav">
       <el-header class="box">
         <!-- 左边 -->
         <div class="left">
