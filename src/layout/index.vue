@@ -50,11 +50,11 @@
     </template>
     <template v-else>
       <!-- 主体 -->
-      <div >
+      <el-main>
         <!-- <el-scrollbar style="height: 100%; "> -->
           <router-view></router-view>
         <!-- </el-scrollbar> -->
-      </div>
+      </el-main>
     </template>
 
   </el-container>

@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style lang="scss">
-.bbox{
+.box_1000{
   width: 1000px;
   margin: 0 auto;
 }

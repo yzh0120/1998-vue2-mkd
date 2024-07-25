@@ -1,5 +1,5 @@
 <template>
-  <div class="bbox">
+  <div class="box_1000">
 
     <van-button type="info">信息按钮</van-button>
 
