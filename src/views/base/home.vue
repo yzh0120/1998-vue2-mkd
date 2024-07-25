@@ -1,6 +1,8 @@
 <template>
   <div class="bbox">
 
+    <van-button type="primary">主要按钮</van-button>
+
 <!-- 
     <tip title="注意事项">
       <div class="notice">

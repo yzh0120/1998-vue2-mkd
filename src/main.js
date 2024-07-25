@@ -144,6 +144,12 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+
+import VantGreen from 'vant-green';
+import 'vant-green/lib/index.css';
+
+Vue.use(VantGreen);
+
 //vxe
 import XEUtils from 'xe-utils'
 Vue.prototype.$utils = XEUtils

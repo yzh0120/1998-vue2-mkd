@@ -229,19 +229,19 @@ export default {
 
     // 获取验证码
     getCode() {
-      userApi
-        .sign({
-          phone: this.loginForm.phoneNumber,
-        })
-        .then((res) => {
-          if (res.code == 200) {
-            this.$message.success(
-              `验证码已经发送到${this.loginForm.phoneNumber}，请注意查收`
-            );
-          } else {
-            this.$message.error(res.msg);
-          }
-        });
+      // userApi
+      //   .sign({
+      //     phone: this.loginForm.phoneNumber,
+      //   })
+      //   .then((res) => {
+      //     if (res.code == 200) {
+      //       this.$message.success(
+      //         `验证码已经发送到${this.loginForm.phoneNumber}，请注意查收`
+      //       );
+      //     } else {
+      //       this.$message.error(res.msg);
+      //     }
+      //   });
     },
 
     // 获取url上面的参数

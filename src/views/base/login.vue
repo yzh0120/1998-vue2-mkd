@@ -172,15 +172,16 @@ export default {
                   new Date(res.data.expireTime)
                 );
                 console.log(this.$route, "this.$route")
-                let path = this.$route.path
+                // let path = this.$route.path
                 this.$router.push({
                   path: "/home"
-                }).then(() => {
-                  this.$emit("myClose")
-                  this.$router.push({
-                    path: path
-                  })
                 })
+                //   .then(() => {
+                //   this.$emit("myClose")
+                //   this.$router.push({
+                //     path: path
+                //   })
+                // })
               } else {
                 this.$message.error(res.info);
               }
@@ -229,19 +230,19 @@ export default {
 
     // 获取验证码
     getCode() {
-      userApi
-        .sign({
-          phone: this.loginForm.phoneNumber,
-        })
-        .then((res) => {
-          if (res.code == 200) {
-            this.$message.success(
-              `验证码已经发送到${this.loginForm.phoneNumber}，请注意查收`
-            );
-          } else {
-            this.$message.error(res.msg);
-          }
-        });
+      // userApi
+      //   .sign({
+      //     phone: this.loginForm.phoneNumber,
+      //   })
+      //   .then((res) => {
+      //     if (res.code == 200) {
+      //       this.$message.success(
+      //         `验证码已经发送到${this.loginForm.phoneNumber}，请注意查收`
+      //       );
+      //     } else {
+      //       this.$message.error(res.msg);
+      //     }
+      //   });
     },
 
     // 获取url上面的参数
