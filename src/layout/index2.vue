@@ -85,7 +85,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
 .container {
   .headerstyle {
     width: 1000px;
@@ -143,4 +143,4 @@ export default {
 
   }
 }
-</style>
+</style> -->

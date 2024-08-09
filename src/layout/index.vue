@@ -9,7 +9,7 @@
           </div>
           <!-- 中间 -->
           <div class="nav" v-if="$store.state.setup.window_innerWidth >= 1500">
-            <el-menu :default-active="$route.path" router class="el-menu-demo" mode="horizontal">
+            <el-menu :default-active="$route.path" router class="el-menu-self" mode="horizontal">
               <el-menu-item index="/home">首页</el-menu-item>
               <el-menu-item index="/jyt">捷易通平台</el-menu-item>
               <el-submenu index="/abc">
@@ -23,7 +23,7 @@
           <!-- 右边 -->
           <div class="right">
             <el-button v-if="!userInfo.id" type="info" size="small" @click="tologin" class="loginBtn">登录</el-button>
-            <el-dropdown v-else :show-timeout="70" :hide-timeout="50" @command="onDropdownCommand">
+            <el-dropdown v-else :show-timeout="50" :hide-timeout="50" @command="onDropdownCommand">
               <span>
                 <span v-if="userInfo.userName">{{ userInfo.userName }}</span>
                 <span v-else-if="userInfo.phone">{{ userInfo.phone }}</span>
@@ -39,7 +39,7 @@
 
          <!-- 中间 -->
          <div class="nav" v-if="$store.state.setup.window_innerWidth < 1500">
-            <el-menu :default-active="$route.path" router class="el-menu-demo" mode="horizontal">
+            <el-menu :default-active="$route.path" router class="el-menu-self" mode="horizontal">
               <el-menu-item index="/home">首页</el-menu-item>
               <el-menu-item index="/jyt">捷易通平台</el-menu-item>
               <el-submenu index="/abc">
@@ -108,7 +108,7 @@ export default {
 
   .box {
     position: relative;
-    height: 90px !important;
+    height: 50px !important;
 
     .left {
       height: 100%;
@@ -180,7 +180,7 @@ export default {
   .el-dropdown-menu__item {
     &:hover {
       background-color: #FEEBED;
-      color: #F86070;
+      color: #F86050;
     }
 
   }

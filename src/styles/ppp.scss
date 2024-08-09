@@ -53,13 +53,18 @@
   // .el-submenu .el-menu-item , .el-submenu .el-menu-item.is-active {
   // 	width: 150px !important;
   // }
+  .el-menu--horizontal{
+    display: flex;
+    justify-content: space-between;
+  }
   .el-menu{
-    height: 70px !important;
+    height: 50px !important;
     border-bottom: 0px !important;
+    
   }
   .el-menu-item,.el-submenu{
-    width: 150px;
-    height: 70px !important;
+    // width: 150px;
+    height: 50px !important;
     display: flex;
     justify-content: center;
     align-items: center;
