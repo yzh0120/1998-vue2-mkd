@@ -16,7 +16,7 @@
                 <template slot="title">系统软件</template>
                 <el-menu-item index="/edit">三方金融服务平台</el-menu-item>
                 <el-menu-item index="/dzbhspxt">电子保函审批系统</el-menu-item>
-                <el-menu-item index="/frzywoaxt">非融资业务OA系统</el-menu-item>
+                <el-menu-item index="/frzywoaxt">非融</el-menu-item>
               </el-submenu>
             </el-menu>
           </div>
@@ -46,7 +46,7 @@
                 <template slot="title">系统软件</template>
                 <el-menu-item index="/edit">三方金融服务平台</el-menu-item>
                 <el-menu-item index="/dzbhspxt">电子保函审批系统</el-menu-item>
-                <el-menu-item index="/frzywoaxt">非融资业务OA系统</el-menu-item>
+                <el-menu-item index="/frzywoaxt">非融</el-menu-item>
               </el-submenu>
             </el-menu>
           </div>

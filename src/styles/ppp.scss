@@ -76,8 +76,8 @@
     background-color: $activeTextColor;
     color: white !important;
   }
-  .el-menu li.is-active.el-menu-item,
-  .el-menu li.is-active.el-submenu{
+  .el-menu.el-menu--horizontal li.is-active.el-menu-item,
+  .el-menu.el-menu--horizontal li.is-active.el-submenu{
     // 某行激活的菜单栏            多选择器是为了权重
     color: $activeTextColor !important; // 字体激活颜色
     border-bottom: 2px solid $activeTextColor !important;
@@ -96,7 +96,7 @@
   // 		color: $activeTextColor !important;
   // 	}
   // }
-  .el-menu--collapse .el-menu .el-submenu, .el-menu--popup {
+  .el-menu--collapse .el-menu .el-submenu, .el-menu--popup {//这个是控制悬浮的最小宽度
     min-width: 10px !important;
 	// width: auto !important;
   }
