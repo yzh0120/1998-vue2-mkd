@@ -23,30 +23,4 @@
     <!-- built files will be auto injected -->
     <script src="./fonts/iconfont.js"></script>  
   </body>
-  <!-- https://blog.csdn.net/weixin_41674235/article/details/125560428?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7Ebaidujs_utm_term%7ECtr-1-125560428-blog-137588575.235%5Ev43%5Epc_blog_bottom_relevance_base5&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7Ebaidujs_utm_term%7ECtr-1-125560428-blog-137588575.235%5Ev43%5Epc_blog_bottom_relevance_base5&utm_relevant_index=2 -->
-  <script>
-    /***
-     *判断屏幕大小更改网页缩放比例
-     */
-    function initScreen() {
-      var viewport = document.querySelector("meta[name=viewport]");
-      if(!viewport){
-        $("head").append('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">')
-      }
-      if(!document.querySelector("meta[http-equiv]")){
-        $("head").append('<meta http-equiv="X-UA-Compatible" content="ie=edge">')
-      }
-      var viewport = document.querySelector("meta[name=viewport]");
-      var winWidth = $(window).width();
-      var size = winWidth / 1200;
-      if (winWidth < 480) {
-        viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=yes');
-        $("html").css({"transform":"scale("+size+")","transform-origin":"0 0",'width':'1200px',"height":"100vh"});
-      }
-    }
-    $(function(){
-      initScreen()
-    })
-    </script>
-    
 </html>
