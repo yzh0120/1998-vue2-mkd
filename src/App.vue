@@ -19,8 +19,21 @@ export default {
   mounted() { 
     this.$store.commit("setup/windowResize");
     window.addEventListener("resize", this.clientXY);
+    ///////////////
+    const _this = this;
+    this.bodyScale();
+    window.onresize = function () {
+      _this.bodyScale();
+    }.bind(this);
+    //////////////
   },
   methods: {
+    //https://www.cnblogs.com/le-cheng/p/17939895
+    bodyScale() {
+      let devicewidth = document.documentElement.clientWidth //获取当前分辨率下的可是区域宽度
+      let scale = devicewidth / 1920 // 分母——设计稿的尺寸
+      document.body.style.zoom = scale //放大缩小相应倍数
+    }
     clientXY() {
       this.$store.commit("setup/windowResize");
     },
