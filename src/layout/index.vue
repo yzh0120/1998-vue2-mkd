@@ -7,8 +7,8 @@
           <div class="left">
             <img :src="require(`@/assets/logo.png`)" alt @click="toHome" />
           </div>
-          <!-- 中间 -->
-          <div class="nav" v-if="$store.state.setup.window_innerWidth >= 1500">
+          <!-- 中间 v-if="$store.state.setup.window_innerWidth >= 1500"-->
+          <div class="nav" >
             <el-menu :default-active="$route.path" router class="el-menu-self" mode="horizontal">
               <el-menu-item index="/home">首页</el-menu-item>
               <el-menu-item index="/jyt">捷易通平台</el-menu-item>
@@ -38,7 +38,7 @@
         </div>
 
          <!-- 中间 -->
-         <div class="nav" v-if="$store.state.setup.window_innerWidth < 1500">
+         <!-- <div class="nav" v-if="$store.state.setup.window_innerWidth < 1500">
             <el-menu :default-active="$route.path" router class="el-menu-self" mode="horizontal">
               <el-menu-item index="/home">首页</el-menu-item>
               <el-menu-item index="/jyt">捷易通平台</el-menu-item>
@@ -49,7 +49,7 @@
                 <el-menu-item index="/frzywoaxt">非融</el-menu-item>
               </el-submenu>
             </el-menu>
-          </div>
+          </div> -->
 
       </el-header>
       <!-- 主体 -->
