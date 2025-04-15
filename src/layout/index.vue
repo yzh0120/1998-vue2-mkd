@@ -5,7 +5,7 @@
         <div class="box">
           <!-- 左边 -->
           <div class="left">
-            <img :src="require(`@/assets/logo.png`)" alt @click="toHome" />
+            <img :src="require(`@/assets/logo.png`)" alt @click="toHome" style="position: relative;z-index: 99999999999;"/>
           </div>
           <!-- 中间 v-if="$store.state.setup.window_innerWidth >= 1500"-->
           <div class="nav" >
